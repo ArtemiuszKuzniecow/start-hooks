@@ -4,7 +4,7 @@ const UseRefExercise = () => {
     const blockRef = useRef("");
     const handleRef = () => {
         blockRef.current.style.cssText =
-            "color: white; height: 150; width: 80;";
+            "color: white; height: 150px; width: 80px;";
         blockRef.current.textContent = "text";
     };
     return (
