@@ -4,18 +4,21 @@ import CardWrapper from "../../common/Card";
 const withFunctions = (Component) => (props) => {
     const isAuth = window.localStorage.getItem("token")?.length > 0;
 
-    const handleLogin = () => {
+    const onLogin = () => {
         window.localStorage.setItem("token", "token");
+        console.log(isAuth);
     };
-    const handleLogOut = () => {
+    const onLogOut = () => {
         window.localStorage.removeItem("token");
+        console.log(isAuth);
     };
+
     return (
         <CardWrapper>
             <Component
                 {...props}
-                onLogin={() => handleLogin()}
-                onLogOut={() => handleLogOut()}
+                onLogin={onLogin}
+                onLogOut={onLogOut}
                 isAuth={isAuth}
             />
         </CardWrapper>
