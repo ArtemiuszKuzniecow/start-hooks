@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Collapse as BsCollapse } from "bootstrap";
 import PropTypes from "prop-types";
+// import CardWrapper from "./Card";
 const CollapseWrapper = ({ children, title, name }) => {
     const [display, setDisaplay] = useState(false);
     const collapseRef = useRef();
@@ -13,6 +14,18 @@ const CollapseWrapper = ({ children, title, name }) => {
         });
         display ? newCollapse.show() : newCollapse.hide();
     }, [display]);
+
+    const list = React.Children.map(children, (child, index) => {
+        if (child.type.name === "Component") {
+            return (
+                <div className="d-flex">
+                    {index + ")"} {child}
+                </div>
+            );
+        } else {
+            return child;
+        }
+    });
 
     return (
         <div className="card  my-2">
@@ -28,7 +41,7 @@ const CollapseWrapper = ({ children, title, name }) => {
                     ></i>
                 </div>
                 <div className="collapse" ref={collapseRef} id={name + title}>
-                    {children}
+                    {list}
                 </div>
             </div>
         </div>
